@@ -52,18 +52,28 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
         ReactGA.pageview('IDE-screen');
         var TempSocket = io(process.env.REACT_APP_BACKEND_ENDPOINT_URL);
         setSocket(TempSocket);
-        const peer = new Peer(undefined, {
-            host:3001,
-            port: 443,
-            path: '/'
+        const peer = new Peer("2wuwuwahs", {
+            host:"localhost",
+            key:"2wuwuwahs",
+            port: 3001,
+            path: '/',
+            secure:'false',
         });
+
         setPeer(peer);
 
         return () => {
             TempSocket.disconnect();
         };
     }, []);
+  // Handle PeerJS events as needed
+    peer?.on('open', (id) => {
+      console.log('Connected to PeerJS with ID:', id);
+    });
 
+    peer?.on('error', (error) => {
+      console.error('PeerJS error:', error);
+    });
 
     useEffect(() => {
         if (socket == null) return;
@@ -391,8 +401,8 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
         const onColorUpdate = (e) => {
             let objectColor;
             for (let i = 0; i < e?.path?.length; i++) {
-                if (e.path[i].dataset.color) {
-                    if (e.path[i].dataset.color === "white") objectColor = "#ffffff"
+                if (e?.path[i]?.dataset?.color) {
+                    if (e?.path[i]?.dataset?.color === "white") objectColor = "#ffffff"
                     else objectColor = pencilColor;
                     break;
                 }
@@ -403,8 +413,8 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
         };
 
         const onPencilColorChange = (e) => {
-            setPencilColor(e.target.value);
-            current.color = e.target.value;
+            setPencilColor(e?.target?.value);
+            current.color = e?.target?.value;
             if (current.color !== '#ffffff') current.width = 5;
             else current.width = 25;
         }

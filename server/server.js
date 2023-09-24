@@ -2,7 +2,7 @@ require('dotenv').config({ path: '.env' });
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose=require('mongoose');
-
+ 
 const cors = require('cors');
 const app = express();
 const server = require('http').Server(app);
@@ -19,10 +19,21 @@ const io = require('socket.io')(server , {
     }
 });
  
-/*const peerServer = PeerServer({ port: 9002, path: '/' }, (exp) => {
-    console.log("Peerjs Server Running: " + exp.address().port);
-});*/
-//peerServer.on('connection', (client) => { console.log(client?.id);});
+ 
+
+const peerServer = PeerServer(undefined,
+    { port: 3001,
+        debug:true,
+         path: '/',
+     });
+
+peerServer?.on('connection', (client) => {
+  console.log("Client connected with ID:", client.getId());
+});
+
+peerServer?.on('disconnect', (client) => {
+  console.log("Client disconnected with ID:", client.getId());
+});
 
 mongoose.connect('mongodb+srv://kashutosh727:XYDNtUWoBePfQ9ry@cluster0.iwkgp8w.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -32,7 +43,10 @@ mongoose.connect('mongodb+srv://kashutosh727:XYDNtUWoBePfQ9ry@cluster0.iwkgp8w.m
 .then(()=> console.log('connected to mongodb'))
 .catch((error) => console.error(error));
 
-
+app.get('/',(req,res)=>{
+    console.log("connetcte to prt 3001")
+    res.json("hello world")
+})
 app.get('/runcode', (req, res) => {
     var url = req.query.url;
     const headers = {
