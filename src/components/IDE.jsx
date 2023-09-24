@@ -53,7 +53,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
         var TempSocket = io(process.env.REACT_APP_BACKEND_ENDPOINT_URL);
         setSocket(TempSocket);
         const peer = new Peer(undefined, {
-            host:9000,
+            host:3001,
             port: 443,
             path: '/'
         });
