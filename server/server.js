@@ -5,36 +5,39 @@ const mongoose=require('mongoose');
  
 const cors = require('cors');
 const app = express();
+const WebSocket = require('ws');
+
 const server = require('http').Server(app);
 const Doc = require('./models/Doc');
 const { v4: uuidV4 } = require('uuid');
 const { PeerServer } = require('peer');
+
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+console.log(server)
 const io = require('socket.io')(server , {
     cors: {
         origin: 'http://localhost:3000',
     }
 });
- 
+const { ExpressPeerServer } = require('peer');
  
 
-const peerServer = PeerServer(undefined,
-    { port: 3001,
+/*const peerServer = ExpressPeerServer(server,
+    { port: 9000, 
+        key:"server",
         debug:true,
-         path: '/',
-     });
+     path: "/myapp" });*/
 
-peerServer?.on('connection', (client) => {
+/*peerServer?.on('connection', (client) => {
   console.log("Client connected with ID:", client.getId());
 });
 
 peerServer?.on('disconnect', (client) => {
   console.log("Client disconnected with ID:", client.getId());
 });
-
+*/
 mongoose.connect('mongodb+srv://kashutosh727:XYDNtUWoBePfQ9ry@cluster0.iwkgp8w.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -42,7 +45,7 @@ mongoose.connect('mongodb+srv://kashutosh727:XYDNtUWoBePfQ9ry@cluster0.iwkgp8w.m
 })
 .then(()=> console.log('connected to mongodb'))
 .catch((error) => console.error(error));
-
+//app.use('/peerjs', peerServer)
 app.get('/',(req,res)=>{
     console.log("connetcte to prt 3001")
     res.json("hello world")
@@ -88,6 +91,7 @@ app.post('/runcode', (req, res) => {
 });
 
 io.on('connection', (socket) =>  {
+    console.log('connected');
     socket.on('get-document', async (DocId) => {
         const doc = await findOrCreateDocument(DocId);
 
@@ -118,7 +122,7 @@ io.on('connection', (socket) =>  {
     });
 
 
-    socket.on('join-room', (roomId, userId, userName)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            => {
+    socket.on('join-room', (roomId, userId, userName)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        => {
         socket.join(roomId)
         socket.to(roomId).emit('user-connected', userId, userName)
 

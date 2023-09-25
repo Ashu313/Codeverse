@@ -50,15 +50,15 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
 
     useEffect(() => {
         ReactGA.pageview('IDE-screen');
-        var TempSocket = io(process.env.REACT_APP_BACKEND_ENDPOINT_URL);
+        var TempSocket = io('http://localhost:3001');
+        console.log(TempSocket);
         setSocket(TempSocket);
-        const peer = new Peer("2wuwuwahs", {
-            host:"localhost",
-            key:"2wuwuwahs",
-            port: 3001,
-            path: '/',
-            secure:'false',
+        const peer = new Peer("someid", {
+            host: "localhost",
+            port: 9000,
+            path: "/myapp",
         });
+        console.log(`Socket.IO server URL: ${process.env.REACT_APP_BACKEND_ENDPOINT_URL}`);
 
         setPeer(peer);
 
@@ -73,6 +73,23 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
 
     peer?.on('error', (error) => {
       console.error('PeerJS error:', error);
+    });
+    socket?.emit('join-room', 'room123', 'user123', 'Alice');
+
+    // Example: Sending a toggle event
+    socket?.emit('toggled', 'user123', true, false);
+
+    // Listening for events from the server
+    socket?.on('user-connected', (userId, userName) => {
+      console.log(`User ${userName} (${userId}) connected.`);
+    });
+
+    socket?.on('received-toggled-events', (userId, video, audio) => {
+      console.log(`Received toggled event from ${userId}: Video: ${video}, Audio: ${audio}`);
+    });
+
+    socket?.on('user-disconnected', (userId) => {
+      console.log(`User ${userId} disconnected.`);
     });
 
     useEffect(() => {
@@ -187,6 +204,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
 
             socket.on('user-connected', (userId) => {
                 const call = peer.call(userId, stream, { metadata: { name: userName } });
+                console.log(call);
                 const video = document.createElement('video')
                 const videoCont = document.createElement('div');
                 videoCont.appendChild(video);
