@@ -38,6 +38,12 @@ html {
   max-height: calc(100% - 30px);
   overflow: auto;
 }
+.h-full{
+  height:auto;
+}
+.CodeMirror-linenumber .CodeMirror-gutter-elt{
+  display:none;
+}
 
 .result {
   /* position: fixed;
