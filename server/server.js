@@ -22,7 +22,20 @@ const io = require('socket.io')(server , {
     }
 });
 const { ExpressPeerServer } = require('peer');
- 
+const peerServer = ExpressPeerServer(server, {
+    debug: true,
+  });
+  
+  io.on('connection', (socket) => {
+    // Send the user's PeerJS ID to the client
+    socket.emit('your-id', socket.id);
+    console.log(socket.id);
+  
+    // Listen for user disconnection and notify other clients
+    socket.on('disconnect', () => {
+      io.emit('user-disconnected', socket.id);
+    });
+});
 
 /*const peerServer = ExpressPeerServer(server,
     { port: 9000, 

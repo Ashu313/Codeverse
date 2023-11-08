@@ -105,6 +105,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
             setInput(delta.input);
             setOutput(delta.output);
         }
+        console.log("hurrah i have updated");
         socket.on('receive-changes', updateC);
         return () => {
             socket.off('receive-changes', updateC);
@@ -218,6 +219,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
             myVideoCont.id = id;
             myVideoCont.dataset.name = userName;
             socket.emit('join-room', docId, id);
+            console.log(id);
         });
         // eslint-disable-next-line
     }, [socket, docId, peer]);
@@ -272,7 +274,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
             });
 
 
-        });
+        })
 
         socket.on('user-disconnected', userId => {
             if (peers[userId]) peers[userId].close();
@@ -321,6 +323,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
         myStream.getVideoTracks()[0].enabled = !(myStream.getVideoTracks()[0].enabled);
         try {
             const toggledVideo = document.getElementById(userId);
+            console.log(toggledVideo);
             if (myStream.getVideoTracks()[0].enabled) {
                 toggledVideo.classList.remove("video-off");
             }
@@ -331,6 +334,21 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
         catch (err) {
             console.log(err);
         }
+        myStream.getAudioTracks()[0].enabled = !(myStream.getAudioTracks()[0].enabled);
+try {
+    const toggledAudio = document.getElementById(userId);
+     // Assuming 'userId' is the ID of the audio element
+    
+    if (myStream.getAudioTracks()[0].enabled) {
+        toggledAudio.classList.remove("audio-off");
+        console.log('audio-off');
+    } else {
+        toggledAudio.classList.add("audio-off");
+        console.log('audio-on');
+    }
+} catch (err) {
+    console.log(err);
+}
 
 
         // // toggle webcam tracks
@@ -756,6 +774,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
                             </div>
                         </div>
                         <RightVideoPanel muteCam={muteCam} muteMic={muteMic} />
+
                     </div>
                 </div>
             </div>

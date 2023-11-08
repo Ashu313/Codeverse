@@ -13,7 +13,7 @@ export function Login() {
                 action: `Login`,
             });
             loginWithRedirect()
-        }} className="  w-full shadow-none hover:shadow-md flex justify-between duration-150 px-4 py-2 rounded-lg text-white bg-theme-teal-dark border border-transparent cursor-pointer font-semibold">
+        }} className="  w-full shadow-none hover:shadow-md flex justify-between duration-150 px-4 py-2 rounded-lg text-white bg-theme-teal-dark border border-transparent cursor-pointer font-semibold" style={{'backgroundColor':'rgb(238 155 0 / var(--tw-bg-opacity))'}}>
             <span>Login</span>
             <img className=" h-6 transform rotate-90 " src={rightArrow} alt="Right Arrow Login" />
         </div>
@@ -31,8 +31,9 @@ export function Logout() {
             logout({
                 returnTo: window.location.origin
             })
-        }} className="  w-auto shadow-none hover:shadow-md flex justify-between duration-150 rounded-full text-center text-theme-teal-dark bg-white border-transparent cursor-pointer font-semibold">
+        }} className="  w-auto shadow-none hover:shadow-md flex justify-between duration-150 rounded-full text-center text-theme-teal-dark bg-white border-transparent cursor-pointer font-semibold" style={{'backgroundColor':'rgb(238 155 0 / var(--tw-bg-opacity))'}}>
             <Tooltip label="Logout" hasArrow fontSize="md" bg="teal.600">
+            
                 <img className=" h-8 transform -rotate-90 " src={rightArrow} alt="Right Arrow Login" />
             </Tooltip>
         </div>

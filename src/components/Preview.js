@@ -47,7 +47,7 @@ export default function Preview({ docId }) {
         <div className="bg-orange-standard select-none flex items-center justify-center h-full w-full">
             <div className="mb-20 flex flex-col items-center">
                 <div className="flex w-full text-white text-3xl sm:text-7xl font-bold codeFont justify-center">
-                    <span>&#60;CodeConnect &#47;&#62;</span>
+                    <span>&#60;CodeVerse&#47;&#62;</span>
                 </div>
                 <div className="flex flex-col mt-20 justify-center  text-white">
                     <button onClick={() => {
