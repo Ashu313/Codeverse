@@ -21,7 +21,7 @@ const Header=({ docId,runCode, toggleModal, isAuthenticated, isInputBoxShown, se
     const [userInfo, setUserInfo] = useState({});
     const [isUserPresent, setIsUserPresent] = useState(false);
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-    const googleDocsUrl = 'https://docs.google.com/document/d/1t4DRx-8ybHEK9bB7Z_jOjd9b0aLBsL10Y6_veGj7BIQ/edit';
+    const googleDocsUrl = 'https://docs.google.com/document/d/1tCCAg2TgdSR1WKFixA9Vt9JVkrj0Fo9XVsSuTpbHlKc/edit?usp=sharing'
   
     const toggleTooltip = () => {
       setIsTooltipOpen(!isTooltipOpen);
@@ -151,7 +151,7 @@ dispatch(UserProfile());
               <img onMouseEnter={() => { showToolTip(true) }} onMouseLeave={() => { showToolTip(false) }} className="h-7 w-7 rounded-full" src={userInfo.picture} alt="user icon" />
             }
             {
-              toolTip && isAuthenticated &&
+              toolTip &&  Profile &&
               <div className="absolute z-50 top-full right-0 mt-2 text-center text-xs text-gray-200 bg-black mr-4 px-1">{userInfo.email}</div>
             }
           </div>

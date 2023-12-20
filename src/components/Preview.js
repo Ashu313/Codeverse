@@ -2,7 +2,12 @@ import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useAuth0 } from '@auth0/auth0-react'
 import { Login, Logout } from './auth/Auth0';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { UserProfile } from "../redux/slice/users/userslice";
+import { Tooltip, Avatar ,useDisclosure, IconButton} from "@chakra-ui/react"
+import rightArrow from "../images/icons/up-arrow.svg"
+
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import {useNavigate} from 'react-router-dom';
 export default function Preview({ docId }) {
@@ -19,6 +24,21 @@ export default function Preview({ docId }) {
     catch (e) {
         console.log(e);
     }
+    const dispatch=useDispatch();
+    useEffect(()=>{
+   dispatch(UserProfile());
+    },[dispatch])
+    const state=useSelector(state=>state?.users);
+    const{Profile,Loading}=state;
+    console.log(Profile);
+    const navigate=useNavigate();
+    const Logout=()=>{
+        const logout=localStorage.removeItem('userinfo');
+        console.log(logout);
+       {logout?<navigate to='/login'/>:<navigate to='/'></navigate>}
+        
+     }
+
    /* const navigate=useNavigate();
     const login = () => {
       // Redirect to the login page
@@ -74,7 +94,17 @@ export default function Preview({ docId }) {
                     </div>
                     <div className="mt-4">
               {/* Display login and sign-up buttons based on authentication status */}
+              {Profile &&<div className="absolute bottom-24 flex justify-center items-center w-96 left-1/2 transform -translate-x-1/2" style={{position:'fixed',background:'black'}}>
+              <div className=" w-auto shadow-none hover:shadow-md flex justify-between duration-150 rounded-full text-center text-theme-teal-dark bg-white border-transparent cursor-pointer font-semibold" style={{'backgroundColor':'rgb(238 155 0 / var(--tw-bg-opacity))'}}>
+            <Tooltip label="Logout" hasArrow fontSize="md" bg="teal.600">
             
+            <button onClick={Logout} style={{background:'black',padding:'1rem'}} >LOGOUT</button>
+            </Tooltip>
+        </div>
+              
+
+                    </div>
+}
             </div>
 
                 </div>
