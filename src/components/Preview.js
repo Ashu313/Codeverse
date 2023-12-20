@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useAuth0 } from '@auth0/auth0-react'
 import { Login, Logout } from './auth/Auth0';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-
+import {useNavigate} from 'react-router-dom';
 export default function Preview({ docId }) {
     const { isAuthenticated, user } = useAuth0();
     useEffect(() => {
@@ -18,7 +19,16 @@ export default function Preview({ docId }) {
     catch (e) {
         console.log(e);
     }
-
+   /* const navigate=useNavigate();
+    const login = () => {
+      // Redirect to the login page
+      navigate('/login');
+    };
+    const signUp = () => {
+      // Redirect to the login page
+      navigate('/register');
+    };*/
+   // const navigate=useNavigate();
     const joinRoomViaRoomId = () => {
         const roomId = document.getElementById("roomIdInput");
         const roomIdValue = roomId.value;
@@ -44,7 +54,7 @@ export default function Preview({ docId }) {
     }
 
     return (
-        <div className="bg-orange-standard select-none flex items-center justify-center h-full w-full">
+        <div className="bg-orange-standard select-none flex items-center justify-center h-full w-full" style={{background:'black'}}>
             <div className="mb-20 flex flex-col items-center">
                 <div className="flex w-full text-white text-3xl sm:text-7xl font-bold codeFont justify-center">
                     <span>&#60;CodeVerse&#47;&#62;</span>
@@ -62,12 +72,11 @@ export default function Preview({ docId }) {
                         <input id="roomIdInput" placeholder="Enter Room ID" type="text" className=" duration-300 rounded w-80 border-white focus:shadow-lg shadow-md text-black outline-none focus:outline-none px-4 py-3 codeFont" />
                         <button onClick={joinRoomViaRoomId} className="hover:shadow-lg duration-300 hover:bg-blue-700 px-4 ml-2 py-2 rounded-lg shadow bg-blue-600 font-medium">Join Room</button>
                     </div>
-                    <div className="absolute bottom-24 flex justify-center items-center w-96 left-1/2 transform -translate-x-1/2">
-                        {
-                            !isAuthenticated ? <Login /> : <Logout />
-                        }
+                    <div className="mt-4">
+              {/* Display login and sign-up buttons based on authentication status */}
+            
+            </div>
 
-                    </div>
                 </div>
             </div>
         </div>

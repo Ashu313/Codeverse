@@ -3,9 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose=require('mongoose');
  
+const userRoute = require('./routes/user/userroute');
+
+
+const errorHandler = require('./middlewares/middlewares');
+
 const cors = require('cors');
 const app = express();
-const WebSocket = require('ws');
+//const WebSocket = require('ws');
 
 const server = require('http').Server(app);
 const Doc = require('./models/Doc');
@@ -15,48 +20,50 @@ const { PeerServer } = require('peer');
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-console.log(server)
 const io = require('socket.io')(server , {
     cors: {
         origin: 'http://localhost:3000',
     }
 });
+app.use('/api/users',userRoute);
+app.use(errorHandler);
+console.log(server)
+
 const { ExpressPeerServer } = require('peer');
-const peerServer = ExpressPeerServer(server, {
-    debug: true,
-  });
+
   
   io.on('connection', (socket) => {
-    // Send the user's PeerJS ID to the client
+    
     socket.emit('your-id', socket.id);
     console.log(socket.id);
   
-    // Listen for user disconnection and notify other clients
+    
     socket.on('disconnect', () => {
       io.emit('user-disconnected', socket.id);
     });
 });
 
-/*const peerServer = ExpressPeerServer(server,
+const peerServer = ExpressPeerServer(server,
     { port: 9000, 
         key:"server",
         debug:true,
-     path: "/myapp" });*/
+     path: "/myapp" });
 
-/*peerServer?.on('connection', (client) => {
-  console.log("Client connected with ID:", client.getId());
-});
 
-peerServer?.on('disconnect', (client) => {
-  console.log("Client disconnected with ID:", client.getId());
-});
-*/
-mongoose.connect('mongodb+srv://kashutosh727:XYDNtUWoBePfQ9ry@cluster0.iwkgp8w.mongodb.net/?retryWrites=true&w=majority', {
+peerServer?.on('connection', (client) => {
+    console.log("Client connected with ID:", client.getId());
+  });
+  
+  peerServer?.on('disconnect', (client) => {
+    console.log("Client disconnected with ID:", client.getId());
+  });
+mongoose.connect('mongodb+srv://Ashutosh_Kumar:k16djJ1gh8m7WhQT@code.ihetshx.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     
 })
 .then(()=> console.log('connected to mongodb'))
+
 .catch((error) => console.error(error));
 //app.use('/peerjs', peerServer)
 app.get('/',(req,res)=>{
@@ -157,9 +164,9 @@ var findOrCreateDocument = async (id) => {
     if(id === null){
         return;
     }
-    const document = await Doc.findById(id);
+    const document = await Doc?.findById(id);
     if(document) return document;
-    return await Doc.create({_id: id, html:"",css:"",js:"",python:"",java:"",cpp:""}); 
+    return await Doc?.create({_id: id, html:"",css:"",js:"",python:"",java:"",cpp:""}); 
 };
 
 server.listen(3001, () => {console.log('3001');})

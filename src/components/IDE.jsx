@@ -36,7 +36,9 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
     const userName = 'smit'
     const videoGrid = document.getElementById('video-grid');
     const myVideo = document.createElement('video');
+    const audioElement = document.createElement('audio');
     const myVideoCont = document.createElement('div');
+    myVideoCont.appendChild(audioElement);
     myVideoCont.appendChild(myVideo);
     myVideoCont.className = "videoContainer rounded mb-4"
     myVideo.muted = true;
@@ -50,30 +52,40 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
 
     useEffect(() => {
         ReactGA.pageview('IDE-screen');
-        var TempSocket = io('http://localhost:3001');
-        console.log(TempSocket);
-        setSocket(TempSocket);
-        const peer = new Peer("someid", {
+        
+      
+        var tempSocket = io('http://localhost:3001');
+        console.log(tempSocket);
+        setSocket(tempSocket);
+    
+        
+        const peer = new Peer( {
             host: "localhost",
             port: 9000,
             path: "/myapp",
         });
+        console.log(
+            peer
+        )
+        
+        peer?.on('open', (id) => {
+            console.log('Connected to PeerJS with ID:', id);
+        });
+    
+        peer?.on('error', (error) => {
+            console.error('PeerJS error:', error);
+        });
+    
+        
         console.log(`Socket.IO server URL: ${process.env.REACT_APP_BACKEND_ENDPOINT_URL}`);
-
-        setPeer(peer);
-
+    
+       
         return () => {
-            TempSocket.disconnect();
+            tempSocket.disconnect();
+            peer.destroy();
         };
-    }, []);
-  // Handle PeerJS events as needed
-    peer?.on('open', (id) => {
-      console.log('Connected to PeerJS with ID:', id);
-    });
-
-    peer?.on('error', (error) => {
-      console.error('PeerJS error:', error);
-    });
+    }, []);  
+    
    
 
     useEffect(() => {
@@ -157,6 +169,25 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
         })
         videoGrid.append(videoCont);
     };
+    function addMediaStream(videoCont, mediaElement, stream, includeAudio = true) {
+        mediaElement.srcObject = stream;
+        
+        mediaElement.addEventListener('loadedmetadata', () => {
+            mediaElement.play();
+        });
+    
+        if (includeAudio) {
+          
+            videoCont.append(mediaElement);
+        } else {
+           
+            videoCont.append(mediaElement);
+        }
+    }
+    
+     
+    // Assuming you have the stream from getUserMedia or elsewhere
+   
 
     useEffect(() => {
         if (socket == null) return;
@@ -168,7 +199,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
             addVideoStream(myVideoCont, myVideo, stream);
             setMyvideoon(true);
             setMystream(stream);
-            peer.on('call', call => {
+            peer?.on('call', call => {
                 call.answer(stream);
                 const video = document.createElement('video');
                 const videoCont = document.createElement('div');
@@ -190,6 +221,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
             socket.on('user-connected', (userId) => {
                 const call = peer.call(userId, stream, { metadata: { name: userName } });
                 console.log(call);
+                console.log("Sjhshshhshshshs");
                 const video = document.createElement('video')
                 const videoCont = document.createElement('div');
                 videoCont.appendChild(video);
@@ -214,7 +246,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
             if (peers[userId]) peers[userId].close();
         });
 
-        peer.on('open', (id) => {
+        peer?.on('open', (id) => {
             setUserId(id);
             myVideoCont.id = id;
             myVideoCont.dataset.name = userName;
@@ -235,7 +267,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
             setMyvideoon(true);
             setMystream(stream);
             replaceStream(stream);
-            peer.on('call', call => {
+            peer?.on('call', call => {
                 call.answer(stream);
                 const video = document.createElement('video');
                 const videoCont = document.createElement('div');
@@ -262,11 +294,11 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
                 videoCont.appendChild(video);
                 videoCont.id = userId;
                 videoCont.dataset.name = call.metadata.name;
-                call.on('stream', (anotherUserVideoStream) => {
+                call?.on('stream', (anotherUserVideoStream) => {
                     addVideoStream(videoCont, video, anotherUserVideoStream);
                 });
 
-                call.on('close', () => {
+                call?.on('close', () => {
                     video.remove();
                     videoCont.remove();
                 });
@@ -280,7 +312,7 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
             if (peers[userId]) peers[userId].close();
         });
 
-        peer.on('open', (id) => {
+        peer?.on('open', (id) => {
             setUserId(id);
             myVideoCont.id = id;
             myVideoCont.dataset.name = userName;
@@ -295,12 +327,23 @@ export default function IDE({ docId, modal, toggleModal, cpp14, setcpp14, java, 
     const muteMic = () => {
         myStream.getAudioTracks()[0].enabled = !(myStream.getAudioTracks()[0].enabled);
         const toggledVideo = document.getElementById(userId);
+        console.log("Before toggle. Audio enabled:", myStream.getAudioTracks()[0].enabled);
+        myStream.getAudioTracks()[0].enabled = !myStream.getAudioTracks()[0].enabled;
+        console.log("After toggle. Audio enabled:", myStream.getAudioTracks()[0].enabled);
+        console.log(userId)
         if (myStream.getAudioTracks()[0].enabled) {
             toggledVideo?.classList?.remove("audio-off");
         }
         else {
             toggledVideo?.classList?.add("audio-off");
         }
+        console.log("Audio track:", myStream.getAudioTracks()[0]);
+// Log information about incoming audio streams
+socket.on('incomingAudioStream', (stream) => {
+    console.log('Incoming audio stream:', stream);
+    // Handle playing the audio stream
+});
+
         socket.emit('toggled', userId, myStream.getVideoTracks()[0].enabled, myStream.getAudioTracks()[0].enabled);
     }
 
@@ -375,7 +418,7 @@ try {
 
     useEffect(() => {
         if (socket === null) return;
-        socket.on('received-toggled-events', (userId, video, audio) => {
+        socket?.on('received-toggled-events', (userId, video, audio) => {
             try {
                 const toggledVideo = document.getElementById(userId);
 
@@ -564,8 +607,8 @@ try {
 
     return (
         <>
-            <div className="flex">
-                <div className="h-screen flex flex-grow flex-col">
+            <div className="flex" style={{overflow:'hidden'}}>
+                <div className="h-screen flex flex-grow flex-col" style={{overflow:'hidden'}}>
                     <div className="flex-grow flex">
                         <div id="editor" className="flex-grow relative flex flex-col">
                             <FileTabs />
@@ -576,9 +619,9 @@ try {
 
                                         <section className="playground">
                                             <div className="code-editor-java flex flex-col h-full mb-5 java-code">
-                                                <div className="editor-header">
-                                                    <LanguageSelector language={selected.toLowerCase()} setLanguage={setSelected} />
-                                                </div>
+                                                <div className="editor-header " style={{ backgroundColor: 'black' }}>
+                                                    <LanguageSelector language={selected.toLowerCase()} setLanguage={setSelected}     style={{ backgroundColor: 'black' }}/>
+                                                </div >
                                                 {
                                                     selected === 'python' && <CodeMirror
                                                         value={
@@ -592,6 +635,8 @@ try {
                                                             scrollbarStyle: null,
                                                             lineWrapping: true,
                                                         }}
+                                                        style={{ backgroundColor: 'black' }}
+
                                                         onBeforeChange={(editor, data, changes) => {
                                                             setpython(changes);
                                                         }}
@@ -804,12 +849,14 @@ function RightVideoPanel({ muteCam, muteMic }) {
                         <button onClick={() => {
                             setIsMuteMic(!isMuteMic)
                             muteMic();
+                            console.log("Button clicked. isMuteMic:", isMuteMic);
                         }} className={` ${isMuteMic ? "bg-theme-orange text-white" : " bg-theme-grey"} border transform duration-300 hover:shadow-2xl shadow-lg border-transparent rounded-full h-8 w-8 p-1.5`}>
                             <img src={muteIcon} alt="mute icon" />
                         </button>
                         <button onClick={() => {
                             setIsMuteCam(!isMuteCam)
                             muteCam();
+                            console.log("Button clicked. isMuteMic:", isMuteMic);
                         }} className={`${isMuteCam ? "bg-theme-orange text-white" : " bg-theme-grey"} border transform duration-300 hover:shadow-2xl shadow-lg border-transparent rounded-full h-8 w-8 p-1.5`}>
                             <img src={videoIcon} alt="video icon" />
                         </button>
@@ -827,17 +874,17 @@ function RightVideoPanel({ muteCam, muteMic }) {
 
 function LanguageSelector({ language, setLanguage }) {
     return (
-        <select className="text-white cursor-pointer bg-transparent" onChange={(e) => {
+        <select className="text-white cursor-pointer bg-transparent"   onChange={(e) => {
             setLanguage(e.target.value)
         }} value={language} name="language-selector">
-            <option className="bg-theme-dark-blue" value="cpp14">cpp14</option>
-            <option className="bg-theme-dark-blue" value="python">python</option>
-            <option className="bg-theme-dark-blue" value="java">java</option>
-            <option className="bg-theme-dark-blue" value="javascript">javascript</option>
-            <option className="bg-theme-dark-blue" value="perl">perl</option>
-            <option className="bg-theme-dark-blue" value="php">php</option>
-            <option className="bg-theme-dark-blue" value="ruby">ruby</option>
-            <option className="bg-theme-dark-blue" value="pascal">pascal</option>
+            <option className="bg-theme-dark-blue"  style={{ backgroundColor: 'black' }} value="cpp14">cpp14</option>
+            <option className="bg-theme-dark-blue"  style={{ backgroundColor: 'black' }} value="python">python</option>
+            <option className="bg-theme-dark-blue" style={{ backgroundColor: 'black' }} value="java">java</option>
+            <option className="bg-theme-dark-blue" style={{ backgroundColor: 'black' }} value="javascript">javascript</option>
+            <option className="bg-theme-dark-blue" style={{ backgroundColor: 'black' }} value="perl">perl</option>
+            <option className="bg-theme-dark-blue"  style={{ backgroundColor: 'black' }}value="php">php</option>
+            <option className="bg-theme-dark-blue" style={{ backgroundColor: 'black' }} value="ruby">ruby</option>
+            <option className="bg-theme-dark-blue"  style={{ backgroundColor: 'black' }}value="pascal">pascal</option>
         </select>
     )
 }
@@ -865,7 +912,67 @@ function FileTabs({ files }) {
     )
 }
 
-
+function SidePanel() {
+    return (
+      <div className="bg-purple-dark text-orange-standard w-20">
+        <span>Share Room ID</span>
+        <br />
+        <span>Join Room</span>
+        <br />
+        <span>Download</span>
+        <br />
+      </div>
+    );
+  }
+  
+  function ShareRoomID() {
+    const currentURL = window.location.href;
+    return (
+      <div className="bg-orange-standard text-purple-dark p-5">
+        Share
+        <div className="my-5 text-purple-dark">
+          <span className="bg-grey-standard w-min rounded-l px-3 py-1 align-middle">
+            {currentURL}
+          </span>
+          <span
+            onClick={() =>
+              navigator.clipboard.writeText(window.location.href)
+            }
+            className="bg-grey-standard bg-opacity-50 w-min px-3 py-1 rounded-r align-middle"
+          >
+            Copy
+          </span>
+        </div>
+        <div className="text-purple-dark">
+          NOTE: Anyone with the link can join & edit the code
+        </div>
+      </div>
+    );
+  }
+  
+  function JoinRoom() {
+    const [input, setInput] = useState('');
+    return (
+      <div className="bg-orange-standard text-purple-dark p-5">
+        Join
+        <div className="my-5 text-purple-dark">
+          <input
+            type="text"
+            value={input}
+            onInput={(e) => setInput(e.target.value)}
+            className="bg-grey-standard w-min rounded-l px-3 py-1 align-middle outline-none border-none"
+          />
+          <button className="bg-grey-standard bg-opacity-50 w-min px-3 py-1 rounded-r align-middle">
+            <a href={input}>Join</a>
+          </button>
+        </div>
+        <div className="text-purple-dark">
+          NOTE: Make sure you are entering the correct URL
+        </div>
+      </div>
+    );
+  }
+  
 // function SidePanel() {
 //   return (
 //     <div className="bg-purple-dark text-orange-standard w-20">
