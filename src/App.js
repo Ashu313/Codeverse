@@ -238,8 +238,7 @@ function App() {
         <Route path='/' element={
       isDocId ? (
         <>
-          <Header userInfo={user} runCode={runCode} isAuthenticated={isAuthenticated} toggleModal={toggleModal} isInputBoxShown={isInputBoxShown} setisInputBoxShown={setisInputBoxShown} />
-          <IDE docId={docId} modal={modal} java={java} setjava={setjava} toggleModal={toggleModal} setModal={setModal} cpp14={cpp14} setcpp14={setcpp14} js={js} setjs={setjs} php={php} setphp={setphp} perl={perl} setperl={setperl} ruby={ruby} setruby={setruby} pascal={pascal} setpascal={setpascal} python={python} setpython={setpython} input={input} setInput={setInput} selected={selected} setSelected={setSelected} output={output} setOutput={setOutput} textEditor={textEditor} setTextEditor={setTextEditor} processing={processing} setProcessing={setProcessing} percentageStage={percentageStage} setPercentageStage={setPercentageStage} isInputBoxShown={isInputBoxShown} />
+           <Preview docId={docId} />
         </>
       ) : (
         <Preview docId={docId} />

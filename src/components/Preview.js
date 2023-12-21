@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserProfile } from "../redux/slice/users/userslice";
 import { Tooltip, Avatar ,useDisclosure, IconButton} from "@chakra-ui/react"
 import rightArrow from "../images/icons/up-arrow.svg"
-
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import {useNavigate} from 'react-router-dom';
 export default function Preview({ docId }) {
@@ -31,11 +31,11 @@ export default function Preview({ docId }) {
     const state=useSelector(state=>state?.users);
     const{Profile,Loading}=state;
     console.log(Profile);
-    const navigate=useNavigate();
+   
     const Logout=()=>{
         const logout=localStorage.removeItem('userinfo');
         console.log(logout);
-       {logout?<navigate to='/login'/>:<navigate to='/'></navigate>}
+        window.location.href = `/home`;
         
      }
 
