@@ -32,8 +32,7 @@ router.post('/payment/verify', async (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature, course_id } = req.body;
 
   try {
-    // Perform payment verification with Razorpay
-    // Example:
+  
     const razorpay = new Razorpay({
       key_id: 'rzp_test_BZtItAuhXcN3fg',
       key_secret: 'vHMneBuvNg3w5zMgrC7333D7',
@@ -49,8 +48,7 @@ router.post('/payment/verify', async (req, res) => {
     });
 
     if (payment && isValidSignature) {
-      // Payment verification successful
-      // Update your database, mark the course as purchased, etc.
+
       res.status(200).json({ success: true });
     } else {
       // Payment verification failed
