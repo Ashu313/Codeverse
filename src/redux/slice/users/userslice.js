@@ -103,6 +103,14 @@ catch(error)
 
 }
 });
+
+export function capitalizeFirstLetter(string) {
+    const words = string?.split(" ");
+    const capitalizedWords = words?.map(
+      (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    );
+    return capitalizedWords?.join(" ");
+  }
 const userloginfromlocalstorage=localStorage.getItem('userinfo')?JSON.parse(localStorage.getItem('userinfo')):null;
 const Userslices=createSlice({
     name:"users",

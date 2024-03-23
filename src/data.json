@@ -1,0 +1,749 @@
+{
+    "quizzes": [
+        {
+            "title": "HTML",
+            "icon": "./assets/images/icon-html.svg",
+            "questions": [
+                {
+                    "question": "What does HTML stand for?",
+                    "options": [
+                        "Hyper Trainer Marking Language",
+                        "Hyper Text Marketing Language",
+                        "Hyper Text Markup Language",
+                        "Hyper Text Markup Leveler"
+                    ],
+                    "answer": "Hyper Text Markup Language"
+                },
+                {
+                    "question": "Which of the following is the correct structure for an HTML document?",
+                    "options": [
+                        "<html><head></head><body></body></html>",
+                        "<head><html></html><body></body></head>",
+                        "<body><head></head><html></html></body>",
+                        "<html><body></body><head></head></html>"
+                    ],
+                    "answer": "<html><head></head><body></body></html>"
+                },
+                {
+                    "question": "Which HTML element is used to define the title of a document?",
+                    "options": [
+                        "<head>",
+                        "<title>",
+                        "<header>",
+                        "<top>"
+                    ],
+                    "answer": "<title>"
+                },
+                {
+                    "question": "What is the purpose of the <body> tag in HTML?",
+                    "options": [
+                        "It defines the document's head section.",
+                        "It contains all the content such as text, images, and links.",
+                        "It is used to define the main content of an HTML document.",
+                        "It specifies the body of the email content in HTML."
+                    ],
+                    "answer": "It contains all the content such as text, images, and links."
+                },
+                {
+                    "question": "Which HTML tag is used to create a hyperlink?",
+                    "options": [
+                        "<hyperlink>",
+                        "<link>",
+                        "<a>",
+                        "<href>"
+                    ],
+                    "answer": "<a>"
+                },
+                {
+                    "question": "Which tag is used to display images in HTML?",
+                    "options": [
+                        "<img>",
+                        "<image>",
+                        "<src>",
+                        "<pic>"
+                    ],
+                    "answer": "<img>"
+                },
+                {
+                    "question": "What attribute is used to provide the path of an image in the <img> tag?",
+                    "options": [
+                        "link",
+                        "src",
+                        "href",
+                        "url"
+                    ],
+                    "answer": "src"
+                },
+                {
+                    "question": "Which HTML tag is used to create an unordered list?",
+                    "options": [
+                        "<ul>",
+                        "<ol>",
+                        "<list>",
+                        "<li>"
+                    ],
+                    "answer": "<ul>"
+                },
+                {
+                    "question": "What does the <br> tag do?",
+                    "options": [
+                        "It breaks the text into two sections.",
+                        "It creates a bold text.",
+                        "It inserts a line break.",
+                        "It adds a new row in a table."
+                    ],
+                    "answer": "It inserts a line break."
+                },
+                {
+                    "question": "In HTML, what does the `fieldset` tag do?",
+                    "options": [
+                        "It is used to group related data in a form.",
+                        "It sets the field to a fixed size.",
+                        "It automatically validates the fields within a form.",
+                        "It hides the fields in a form."
+                    ],
+                    "answer": "It is used to group related data in a form."
+                }
+            ]
+        },
+        {
+            "title": "CSS",
+            "icon": "./assets/images/icon-css.svg",
+            "questions": [
+                {
+                    "question": "What does CSS stand for?",
+                    "options": [
+                        "Colorful Style Sheets",
+                        "Computer Style Sheets",
+                        "Cascading Style Sheets",
+                        "Creative Style Sheets"
+                    ],
+                    "answer": "Cascading Style Sheets"
+                },
+                {
+                    "question": "Which HTML attribute is used to define inline styles?",
+                    "options": [
+                        "styles",
+                        "style",
+                        "class",
+                        "font-style"
+                    ],
+                    "answer": "style"
+                },
+                {
+                    "question": "How do you insert a comment in a CSS file?",
+                    "options": [
+                        "// this is a comment //",
+                        "/* this is a comment */",
+                        "-- this is a comment --",
+                        "<!-- this is a comment -->"
+                    ],
+                    "answer": "/* this is a comment */"
+                },
+                {
+                    "question": "Which property is used to change the background color of an element?",
+                    "options": [
+                        "color",
+                        "bgcolor",
+                        "background-color",
+                        "background"
+                    ],
+                    "answer": "background-color"
+                },
+                {
+                    "question": "How do you apply a style to all <p> elements?",
+                    "options": [
+                        "p { }",
+                        ".p { }",
+                        "#p { }",
+                        "all.p { }"
+                    ],
+                    "answer": "p { }"
+                },
+                {
+                    "question": "Which property is used to change the font of an element?",
+                    "options": [
+                        "font-style",
+                        "text-style",
+                        "font-family",
+                        "typeface"
+                    ],
+                    "answer": "font-family"
+                },
+                {
+                    "question": "How do you make each word in a text start with a capital letter?",
+                    "options": [
+                        "text-transform: capitalize",
+                        "text-transform: uppercase",
+                        "text-style: capital",
+                        "font-transform: capitalize"
+                    ],
+                    "answer": "text-transform: capitalize"
+                },
+                {
+                    "question": "How do you select an element with the class name 'header'?",
+                    "options": [
+                        ".header",
+                        "#header",
+                        "header",
+                        "*header"
+                    ],
+                    "answer": ".header"
+                },
+                {
+                    "question": "What is the default value of the 'position' property?",
+                    "options": [
+                        "relative",
+                        "fixed",
+                        "absolute",
+                        "static"
+                    ],
+                    "answer": "static"
+                },
+                {
+                    "question": "What is the purpose of the z-index property in CSS?",
+                    "options": [
+                        "To count the number of elements",
+                        "To set the magnification level of an element",
+                        "To specify the stack order of an element",
+                        "To create a zoom effect"
+                    ],
+                    "answer": "To specify the stack order of an element"
+                }
+            ]
+        },
+        {
+            "title": "JavaScript",
+            "icon": "./assets/images/icon-js.svg",
+            "questions": [
+                {
+                    "question": "Which syntax is correct to output 'Hello World' in an alert box?",
+                    "options": [
+                        "alertBox('Hello World');",
+                        "msg('Hello World');",
+                        "alert('Hello World');",
+                        "msgBox('Hello World');"
+                    ],
+                    "answer": "alert('Hello World');"
+                },
+                {
+                    "question": "How do you call a function named 'myFunction'?",
+                    "options": [
+                        "call function myFunction()",
+                        "call myFunction()",
+                        "myFunction()",
+                        "execute myFunction()"
+                    ],
+                    "answer": "myFunction()"
+                },
+                {
+                    "question": "How to write an IF statement in JavaScript?",
+                    "options": [
+                        "if i = 5 then",
+                        "if (i == 5)",
+                        "if i == 5",
+                        "if i = 5"
+                    ],
+                    "answer": "if (i == 5)"
+                },
+                {
+                    "question": "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+                    "options": [
+                        "if (i <> 5)",
+                        "if i =! 5 then",
+                        "if (i != 5)",
+                        "if i not = 5"
+                    ],
+                    "answer": "if (i != 5)"
+                },
+                  {
+                    "question": "How does a FOR loop start?",
+                    "options": [
+                        "for (i = 0; i <= 5)",
+                        "for i = 1 to 5",
+                        "for (i <= 5; i++)",
+                        "for (i = 0; i <= 5; i++)"
+                    ],
+                    "answer": "for (i = 0; i <= 5; i++)"
+                },
+                {
+                    "question": "How can you add a comment in a JavaScript?",
+                    "options": [
+                      "'This is a comment",
+                      "//This is a comment",
+                      "<!--This is a comment-->",
+                      "/* This is a comment */"
+                    ],
+                    "answer": "//This is a comment"
+                },
+                {
+                    "question": "What is the correct way to write a JavaScript array?",
+                    "options": [
+                        "var colors = (1:'red', 2:'green', 3:'blue')",
+                        "var colors = ['red', 'green', 'blue']",
+                        "var colors = 'red', 'green', 'blue'",
+                        "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')"
+                    ],
+                    "answer": "var colors = ['red', 'green', 'blue']"
+                },
+                {
+                    "question": "How do you find the number with the highest value of x and y?",
+                    "options": [
+                        "Math.ceil(x, y)",
+                        "top(x, y)",
+                        "Math.max(x, y)",
+                        "Math.highest(x, y)"
+                    ],
+                    "answer": "Math.max(x, y)"
+                },
+                {
+                    "question": "Which operator is used to assign a value to a variable?",
+                    "options": [
+                        "-",
+                        "*",
+                        "=",
+                        "x"
+                    ],
+                    "answer": "="
+                },
+                {
+                    "question": "What is the correct way to write a JavaScript object?",
+                    "options": [
+                        "var person = {firstName: 'John', lastName: 'Doe'};",
+                        "var person = {firstName = 'John', lastName = 'Doe'};",
+                        "var person = (firstName: 'John', lastName: 'Doe');",
+                        "var person = (firstName = 'John', lastName = 'Doe');"
+                    ],
+                    "answer": "var person = {firstName: 'John', lastName: 'Doe'};"
+                }
+            ]
+        },
+        {
+            "title": "Accessibility",
+            "icon": "./assets/images/icon-accessibility.svg",
+            "questions": [
+                {
+                    "question": "What does 'WCAG' stand for?",
+                    "options": [
+                        "Web Content Accessibility Guidelines",
+                        "Web Compliance Accessibility Guide",
+                        "Web Content Accessibility Goals",
+                        "Website Compliance and Accessibility Guidelines"
+                    ],
+                    "answer": "Web Content Accessibility Guidelines"
+                },
+                {
+                    "question": "Which element is used to provide alternative text for images for screen reader users?",
+                    "options": [
+                        "<alt>",
+                        "<figcaption>",
+                        "<description>",
+                        "<img alt='description'>"
+                    ],
+                    "answer": "<img alt='description'>"
+                },
+                {
+                    "question": "What does ARIA stand for in web development?",
+                    "options": [
+                        "Accessible Rich Internet Applications",
+                        "Advanced Responsive Internet Assistance",
+                        "Accessible Responsive Internet Applications",
+                        "Automated Responsive Internet Actions"
+                    ],
+                    "answer": "Accessible Rich Internet Applications"
+                },
+                {
+                    "question": "Which of the following is not a principle of the WCAG?",
+                    "options": [
+                        "Perceivable",
+                        "Dependable",
+                        "Operable",
+                        "Understandable"
+                    ],
+                    "answer": "Dependable"
+                },
+                {
+                    "question": "Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?",
+                    "options": [
+                        "3:1",
+                        "4.5:1",
+                        "7:1",
+                        "2:1"
+                    ],
+                    "answer": "4.5:1"
+                },
+                {
+                    "question": "Which of the following elements is inherently focusable, meaning it can receive focus without a 'tabindex' attribute?",
+                    "options": [
+                        "<div>",
+                        "<span>",
+                        "<a href='...'>",
+                        "<p>"
+                    ],
+                    "answer": "<a href='...'>"
+                },
+                {
+                    "question": "What is the purpose of the 'lang' attribute in an HTML page?",
+                    "options": [
+                        "To specify the scripting language",
+                        "To define the character set",
+                        "To indicate the language of the page content",
+                        "To declare a language pack"
+                    ],
+                    "answer": "To indicate the language of the page content"
+                },
+                {
+                    "question": "Which guideline ensures that content is accessible by keyboard as well as by mouse?",
+                    "options": [
+                        "Keyboard Accessible",
+                        "Mouse Independence",
+                        "Device Independence",
+                        "Operable Controls"
+                    ],
+                    "answer": "Keyboard Accessible"
+                },
+                {
+                    "question": "What is the role of 'skip navigation' links in web accessibility?",
+                    "options": [
+                        "To skip over primary navigation to the main content",
+                        "To provide shortcuts to different sections of the website",
+                        "To help users skip unwanted sections like advertisements",
+                        "To bypass broken links in the navigation"
+                    ],
+                    "answer": "To skip over primary navigation to the main content"
+                },
+                {
+                    "question": "Which of these tools can help in checking the accessibility of a website?",
+                    "options": [
+                        "W3C Validator",
+                        "Google Lighthouse",
+                        "CSS Validator",
+                        "JavaScript Console"
+                    ],
+                    "answer": "Google Lighthouse"
+                }
+            ]
+        },
+{
+    "title": "ReactJS",
+    "icon": "./assets/images/icon-accessibility.svg",
+    "questions": [
+      {
+        "question": "What is ReactJS?",
+        "options": [
+          "A JavaScript library for building user interfaces",
+          "A CSS framework for styling web applications",
+          "A server-side scripting language",
+          "A database management system"
+        ],
+        "answer": "A JavaScript library for building user interfaces"
+      },
+      {
+        "question": "Which command is used to create a new React app?",
+        "options": [
+          "npm start",
+          "npm create-react-app",
+          "npx create-react-app",
+          "npm new-react-app"
+        ],
+        "answer": "npx create-react-app"
+      },
+      {
+        "question": "What is JSX?",
+        "options": [
+          "JavaScript XML",
+          "JavaScript Syntax eXtension",
+          "JavaScript Extension",
+          "JavaScript XML Style"
+        ],
+        "answer": "JavaScript XML"
+      },
+      {
+        "question": "What is the virtual DOM?",
+        "options": [
+          "A virtual machine for running JavaScript code",
+          "A representation of the actual DOM tree in memory",
+          "A DOM tree created by React components",
+          "A tool for debugging React applications"
+        ],
+        "answer": "A representation of the actual DOM tree in memory"
+      },
+      {
+        "question": "What is the purpose of PropTypes in React?",
+        "options": [
+          "To define the types of props passed to a component",
+          "To handle HTTP requests",
+          "To create reusable components",
+          "To manage state in functional components"
+        ],
+        "answer": "To define the types of props passed to a component"
+      },
+      {
+        "question": "What lifecycle method is called before a component is removed from the DOM?",
+        "options": [
+          "componentWillUnmount()",
+          "componentDidMount()",
+          "componentWillUpdate()",
+          "componentWillReceiveProps()"
+        ],
+        "answer": "componentWillUnmount()"
+      },
+      {
+        "question": "What does state represent in React?",
+        "options": [
+          "Data that changes over time",
+          "Immutable data",
+          "Global application data",
+          "Static data"
+        ],
+        "answer": "Data that changes over time"
+      },
+      {
+        "question": "What is the purpose of the key attribute in React lists?",
+        "options": [
+          "To specify the order of list items",
+          "To provide a unique identifier to each list item",
+          "To style list items",
+          "To conditionally render list items"
+        ],
+        "answer": "To provide a unique identifier to each list item"
+      },
+      {
+        "question": "What is the recommended way to update state that depends on the previous state value?",
+        "options": [
+          "Using setState() without a callback function",
+          "Using setState() with an arrow function",
+          "Using setState() with an object",
+          "Directly modifying state outside of setState()"
+        ],
+        "answer": "Using setState() with an arrow function"
+      },
+      {
+        "question": "Which hook is used to perform side effects in functional components?",
+        "options": [
+          "useState()",
+          "useReducer()",
+          "useEffect()",
+          "useContext()"
+        ],
+        "answer": "useEffect()"
+      }
+    ]
+  },
+  {
+    "title":"Redux",
+    "icon": "./assets/images/icon-accessibility.svg",
+    "questions": [
+      {
+        "question": "What is Redux?",
+        "options": [
+          "A state management library for JavaScript applications",
+          "A server-side rendering framework",
+          "A database management system",
+          "A CSS preprocessor"
+        ],
+        "answer": "A state management library for JavaScript applications"
+      },
+      {
+        "question": "What is an action in Redux?",
+        "options": [
+          "A function that returns a new state",
+          "A plain JavaScript object describing a change",
+          "A component in the Redux architecture",
+          "A middleware for handling side effects"
+        ],
+        "answer": "A plain JavaScript object describing a change"
+      },
+      {
+        "question": "What is a reducer in Redux?",
+        "options": [
+          "A function that returns a new state",
+          "A component responsible for rendering UI",
+          "A built-in method for updating state",
+          "A middleware for handling asynchronous actions"
+        ],
+        "answer": "A function that returns a new state"
+      },
+      {
+        "question": "What is the purpose of the combineReducers function in Redux?",
+        "options": [
+          "To combine multiple reducers into a single reducer function",
+          "To create a store instance in Redux",
+          "To dispatch actions to reducers",
+          "To apply middleware to the Redux store"
+        ],
+        "answer": "To combine multiple reducers into a single reducer function"
+      },
+      {
+        "question": "What is the Redux store?",
+        "options": [
+          "An object that holds the application state",
+          "A server for handling HTTP requests",
+          "A function for updating React components",
+          "A middleware for handling side effects"
+        ],
+        "answer": "An object that holds the application state"
+      },
+      {
+        "question": "What is the purpose of the connect function in React-Redux?",
+        "options": [
+          "To connect React components to the Redux store",
+          "To create action creators in Redux",
+          "To handle asynchronous actions in Redux",
+          "To apply middleware to the Redux store"
+        ],
+        "answer": "To connect React components to the Redux store"
+      },
+      {
+        "question": "What is middleware in Redux?",
+        "options": [
+          "Functions that intercept actions before they reach the reducer",
+          "A component responsible for rendering UI",
+          "A method for updating state in reducers",
+          "A built-in method for handling side effects"
+        ],
+        "answer": "Functions that intercept actions before they reach the reducer"
+      },
+      {
+        "question": "What is the Redux DevTools extension used for?",
+        "options": [
+          "To inspect and debug Redux applications",
+          "To create Redux store instances",
+          "To dispatch actions to reducers",
+          "To handle asynchronous actions in Redux"
+        ],
+        "answer": "To inspect and debug Redux applications"
+      },
+      {
+        "question": "What is an action creator in Redux?",
+        "options": [
+          "A function that creates an action object",
+          "A component responsible for rendering UI",
+          "A middleware for handling side effects",
+          "A function that returns a new state"
+        ],
+        "answer": "A function that creates an action object"
+      },
+      {
+        "question": "What is the purpose of the Redux Thunk middleware?",
+        "options": [
+          "To handle asynchronous actions in Redux",
+          "To create action creators in Redux",
+          "To dispatch actions to reducers",
+          "To apply middleware to the Redux store"
+        ],
+        "answer": "To handle asynchronous actions in Redux"
+      }
+    ]
+  },
+  {
+    "title":"Java",
+    "icons":"",
+    "questions": [
+      {
+        "question": "What is Java?",
+        "options": [
+          "A programming language",
+          "A database management system",
+          "A server-side rendering framework",
+          "A version control system"
+        ],
+        "answer": "A programming language"
+      },
+      {
+        "question": "Which keyword is used to define a class in Java?",
+        "options": [
+          "class",
+          "void",
+          "new",
+          "this"
+        ],
+        "answer": "class"
+      },
+      {
+        "question": "What is the default value of the primitive type 'int' in Java?",
+        "options": [
+          "0",
+          "null",
+          "undefined",
+          "NaN"
+        ],
+        "answer": "0"
+      },
+      {
+        "question": "Which data structure is used to implement the 'last in, first out' (LIFO) behavior in Java?",
+        "options": [
+          "Stack",
+          "Queue",
+          "ArrayList",
+          "LinkedList"
+        ],
+        "answer": "Stack"
+      },
+      {
+        "question": "Which keyword is used to declare a method that does not return any value in Java?",
+        "options": [
+          "void",
+          "null",
+          "function",
+          "return"
+        ],
+        "answer": "void"
+      },
+      {
+        "question": "What is the purpose of the 'static' keyword in Java?",
+        "options": [
+          "To create an instance of a class",
+          "To define a constant value",
+          "To specify that a method belongs to the class, not the instance",
+          "To prevent a class from being subclassed"
+        ],
+        "answer": "To specify that a method belongs to the class, not the instance"
+      },
+      {
+        "question": "Which collection class is synchronized in Java?",
+        "options": [
+          "Vector",
+          "ArrayList",
+          "HashMap",
+          "HashSet"
+        ],
+        "answer": "Vector"
+      },
+      {
+        "question": "What is the superclass of all classes in Java?",
+        "options": [
+          "Object",
+          "Main",
+          "Super",
+          "Parent"
+        ],
+        "answer": "Object"
+      },
+      {
+        "question": "Which loop in Java does not have a condition to terminate?",
+        "options": [
+          "while",
+          "do-while",
+          "for",
+          "foreach"
+        ],
+        "answer": "while"
+      },
+      {
+        "question": "What is the output of 'System.out.println(5 / 2)' in Java?",
+        "options": [
+          "2.5",
+          "2",
+          "3",
+          "0.5"
+        ],
+        "answer": "2"
+      }
+    ]
+  }
+  
+  
+    ]
+}
+  

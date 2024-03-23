@@ -50,7 +50,7 @@ const Register=()=>{
     useEffect(()=>{
         if(userAuth)
         {
-         return Navigate('/');
+         return Navigate('/login');
         }
     },[userAuth])
    

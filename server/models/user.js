@@ -22,7 +22,13 @@ const userSchema=mongoose.Schema({
 
         type:Boolean,
         default:false,
-    }
+    },
+    purchasedCourses: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
+      }
+    ]
 },
 {
     toJSON: {

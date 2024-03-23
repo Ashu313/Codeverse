@@ -1,10 +1,44 @@
 const expressAsyncHandler=require('express-async-handler');
  
 
-const  User = require('../../models/user');
-const generateToken=require('../../middlewares/generateToken');
-
-
+const  Admin = require('../../../server/models/admin');
+const  User = require('../../../server/models/user');
+const generateToken=require('../../../server/middlewares/generateToken');
+var jwt = require('jsonwebtoken');
+const adminSignup = async (req, res) => {
+  const { email } = req.body;
+  const newAdmin = new Admin(req.body);
+  try {
+    const admin = await Admin.findOne({ email });
+    if (admin) {
+      return res.status(422).json({ error: 'Email already exits' });
+    } else {
+      await newAdmin.save();
+      const token = jwt.sign({ email, role: 'admin' },"jbhbhgvgvg333", process.env.JWT_KEY, {
+        expiresIn: '3h'
+      });
+      res.json({ message: 'Admin created successfully', token });
+    }
+  } catch (e) {
+    console.log('In Error', e);
+  }
+};
+const adminSignin = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await Admin.findOne({ email, password });
+    if (!user) {
+      return res.status(422).json({ error: 'Email does not exits' });
+    } else {
+      const token = jwt.sign({ email, role: 'admin' },"jbhbhgvgvg333", process.env.JWT_KEY ,{
+        expiresIn: '3h'
+      });
+      res.json({ message: 'Logged in successfully', token });
+    }
+  } catch (e) {
+    console.log('In Error', e);
+  }
+};
 
 
 const registerUser=expressAsyncHandler(async(req,res)=>{
@@ -100,6 +134,6 @@ throw new Error('invalid login credintals');
 
 });
 
-module.exports={registerUser,fetchUser,loginCredentials,userProfileCtrl,updateUserCtrl};
+module.exports={adminSignin,adminSignup,registerUser,fetchUser,loginCredentials,userProfileCtrl,updateUserCtrl};
 //module.exports=fetchUser; 
 //module.exports=LoginCredentials ;

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose=require('mongoose');
  
 const userRoute = require('./routes/user/userroute');
+const courseRoute=require("./routes/user/courses")
 
 
 const errorHandler = require('./middlewares/middlewares');
@@ -26,6 +27,7 @@ const io = require('socket.io')(server , {
     }
 });
 app.use('/api/users',userRoute);
+app.use('/api/users',courseRoute);
 app.use(errorHandler);
 console.log(server)
 

@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+.background{
+  background-color: hsl(275, 100%, 97%);
+}
+.pattern{
+  background-image: url('./asset/background-pattern-desktop.svg');
+}
+.contentshow{
+  height: auto;
+  transition: all 0.5s cubic-bezier(1,0,1,0);
+}
+
+@media screen and (max-width: 400px) {
+  .pattern{
+      background-image: url('./asset/background-pattern-mobile.svg');
+  }
+}
