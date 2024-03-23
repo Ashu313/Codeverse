@@ -9,7 +9,7 @@ exports.courses = async (req, res) => {
   res.json({ courses });
 };
 exports.course = async (req, res) => {
-  const courseId = req?.params?.id; // Assuming the course ID is passed as a parameter in the request URL
+  const courseId = req?.params?.id; 
   console.log("Course ID:", courseId);
   ;
   try {
